@@ -12,7 +12,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK11_Centos' //Versión preinstalada en la Configuración del Master
+    jdk 'JDK11_Centos' //Versión necesaria para SonarQube según logs (Se menciona que es necesario JDK >= 11)
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -35,7 +35,7 @@ pipeline {
       }
     }
     
-    stage('Clean & Compile') {
+    stage('Clean') {
       steps{
         sh 'chmod +x ./gradlew'
       	sh './gradlew --b ./build.gradle clean'
